@@ -1,0 +1,62 @@
+- Run the shell and import your models
+>>> from main.models import *
+
+
+- Query: Create 3 new dojos
+>>> Dojo.objects.create(name = "dojoA", city = "A", State = "A")
+
+>>> Dojo.objects.create(name = "dojoB", city = "B", State = "B")
+>>> Dojo.objects.create(name = "dojoC", city = "C", State = "C")
+
+
+- Query: Delete the 3 dojos you just created
+>>> a = Dojo.objects.all()
+>>> a.delete()
+
+
+- Query: Create 3 more dojos
+>>> A = Dojo.objects.create(name = "dojoA", city = "A", State = "A")
+>>> B = Dojo.objects.create(name = "dojoB", city = "B", State = "B")
+>>> C = Dojo.objects.create(name = "dojoC", city = "C", State = "C")
+
+
+- Query: Create 3 ninjas that belong to the first dojo
+>>> Astudenta = Ninja.objects.create(first_name = "John", last_name = "Wick", dojoid = A)
+>>> Astudentb = Ninja.objects.create(first_name = "Eric", last_name = "Wang", dojoid = A)
+>>> Astudentc = Ninja.objects.create(first_name = "Krystal", last_name = "Huang", dojoid = A)
+
+
+- Query: Create 3 ninjas that belong to the second dojo
+>>> Bstudenta = Ninja.objects.create(first_name = "Bill", last_name = "Rock", dojoid = B)
+>>> Bstudentb = Ninja.objects.create(first_name = "James", last_name = "Bond", dojoid = B)
+>>> Bstudentc = Ninja.objects.create(first_name = "Michael", last_name = "Choi", dojoid = B)
+
+
+- Query: Create 3 ninjas that belong to the third dojo
+>>> Cstudenta = Ninja.objects.create(first_name = "Obi-wan", last_name = "Kenobi", dojoid = C)
+>>> Cstudentb = Ninja.objects.create(first_name = "Anikin", last_name = "Skywalker", dojoid = C)
+>>> Cstudentc = Ninja.objects.create(first_name = "General", last_name = "Grievous", dojoid = C)
+
+
+- Query: Retrieve all the ninjas from the first dojo
+>>> Ninja.objects.filter(dojoid=A)
+
+
+- Query: Retrieve all the ninjas from the last dojo
+>>> Ninja.objects.filter(dojoid=C)
+
+
+- Query: Retrieve the last ninja's dojo
+>>> lastninja = Ninja.objects.last()
+>>> lastninja.dojoid
+
+
+- Add a new text field called "desc" to your Dojo class
+desc = models.TextField(default = "old dojo")
+
+
+- Create and run the migration files to update the table in your database. If needed, provide a default value of "old dojo"
+desc = models.TextField(default = "old dojo")
+
+- Query: Create a new dojo
+>>> Dojo.objects.create(name = "newDojo")

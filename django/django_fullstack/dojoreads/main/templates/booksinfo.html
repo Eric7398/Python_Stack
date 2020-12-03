@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="/books">Home</a>
+    <a href="/logout">Logout</a>
+    <h2>{{book.title}}</h2>
+    {% for j in book.authors.all %}
+    <h2>Author: {{j.name}}</h2> 
+    {% endfor %}
+    <h2>Reviews:</h2>
+    {% for i in book.forbooks.all %}
+    <hr>
+    <p>Rating: {{i.rating}}/5</p>
+    <p><a href="/user/{{i.byuser.id}}">{{i.byuser.fname}}</a> said: {{i.review}}</p>
+    <p>{{i.created_at}}</p>
+
+    {% if person.id == i.byuser.id  %}
+    <form action="/del/{{i.id}}" method="post">
+        {% csrf_token %}
+    <input type="hidden" name="return" value="{{book.id}}">
+    <input type="submit" value="Delete this Review">
+    </form>
+    {% endif %}
+
+
+    {% endfor %}
+<hr>
+    <form action="/addreview/{{book.id}}" method="post">
+        {% csrf_token %}
+        <textarea name="review" cols="30" rows="10" placeholder="Add another review here!"></textarea><br>
+        <input type="number" min="1" max="5" name="rating" placeholder="1-5"><br>
+        <input type="submit" value="Submit Review">
+    </form>
+</body>
+</html>

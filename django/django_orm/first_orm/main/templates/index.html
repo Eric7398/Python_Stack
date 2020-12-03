@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href={% static 'css/style.css' %}>
+    <title>Document</title>
+</head>
+<body>
+    <h1>All the Users</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Age</th>
+        </tr>
+
+        {% for i in allusers %}
+        <tr>
+            <td>{{ i.id }}</td>
+            <td>{{ i.first_name }} {{ i.last_name }}</td>
+            <td>{{ i.email }}</td>
+            <td>{{ i.age }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    
+    <form action="/info" method="POST">
+        {% csrf_token %}
+
+        <h3>First Name</h3>
+        <input type="text" name="first_name">
+
+        <h3>Last Name</h3>
+        <input type="text" name="last_name" >
+
+        <h3>Email</h3>
+        <input type="text" name="email">
+
+        <h3>Age</h3>
+        <input type="number" name="age">
+
+        <input type="submit" value="Add"/>
+    </form>
+    <a href="/del">Delete Last User!</a>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Document</title>
+    <style>
+        #scroll {
+            overflow: scroll;
+            width: 200px;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Welcome! {{myuser.fname}}</h2>
+    <a href="/books/add">Add Book and Review</a>
+    <a href="/logout">Logout</a>
+    <h2>Recent Book Reviews:</h2>
+    {% for i in firstreview %}
+    <hr>
+    <p><a href="/books/{{i.forbook.id}}">{{i.forbook.title}}</a></p>
+    <p>Rating: {{i.rating}}/5</p>
+    <p><a href="/user/{{i.byuser.id}}">{{i.byuser.fname}}</a> said: {{i.review}}</p>
+    <p>{{i.created_at}}</p>
+    {% endfor %}
+
+    <h2>Other Books with Reviews</h2>
+    <div id="scroll">
+        {% for j in otherreview %}
+        <p><a href="/books/{{j.forbook.id}}">{{j.forbook.title}}</a></p>
+        {% endfor %}
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+.red, .black{
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    margin: -2px;
+}
+.red{
+    background-color: red;
+}
+.black{
+    background-color: black;
+}
+
+#wrapper{
+    width: 850px;
+    margin: 0px auto;
+}
+
+h1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 100px 0px 10px 0px;
+    font-size: 50px;
+}

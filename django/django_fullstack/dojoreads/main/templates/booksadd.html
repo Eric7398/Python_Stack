@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="/books">Home</a>
+    <a href="/logout">Logout</a>
+    <h2>Add a New Book Title and a Review</h2>
+
+    <form action="/addproc" method="post">
+        {% csrf_token %}
+        <input type="text" name="title" placeholder="Title"><br>
+        <input type="text" name="author" placeholder="Add a new Author"><br>
+
+        <select name="existauthor">
+            <option value="">None</option>
+            {% for i in author %}
+            <option value="{{i.id}}">{{i.name}}</option>
+            {% endfor %}
+        </select><br>
+        
+        
+
+
+        <textarea name="review" placeholder="Add a review here!" cols="30" rows="10"></textarea><br>
+        <input type="number" name="rating" min="1" max="5" placeholder="1-5"><br>
+        <input type="submit" value="Add Book and Review"><br>
+
+
+    </form>
+</body>
+</html>
